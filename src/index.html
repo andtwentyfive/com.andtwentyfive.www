@@ -30,12 +30,13 @@
             height: 100vh;
             margin: 0;
             place-items: center;
+            color: black;
         }
 
         html {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.25em;
-            line-height: 1.75;
+            font-size: 1.15em;
+            line-height: 1.7;
             margin: auto;
             max-width: 70ch;
             padding: 1em;
@@ -44,35 +45,154 @@
         .container {
             align-items: center;
             display: flex;
+            flex-direction: column;
             height: 100%;
             justify-content: center;
             width: 100%;
             max-width: 500px;
-
-            div {
-                text-align: center;
-            }
         }
 
         img {
             height: auto;
             max-width: 100%;
         }
+
+        .accordion {
+            color: black;
+            background-color: #ffffff;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            font-weight: bold;
+            padding: 18px;
+            text-align: left;
+            transition: 0.4s;
+            width: 100%;
+            font-size: 0.85em;
+        }
+
+        .active, .accordion:hover {
+            background-color: #fafafa;
+        }
+
+        .panel {
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 18px;
+            font-size: smaller;
+            transition: max-height 0.2s ease-out;
+
+            p {
+                text-align: left;
+            }
+        }
+
+        .accordion:after {
+            content: '\02795';
+            font-size: 13px;
+            color: #777;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .active:after {
+            content: "\2796";
+        }
+
+        blockquote {
+            font: 14px/22px normal helvetica, sans-serif;
+            text-align: left;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            padding-left: 15px;
+            border-left: 3px solid #ccc;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <div>
-        <div>
-            <a href="https://github.com/andtwentyfive">
-                <img class="logo" src="assets/image/AND25-light.svg" alt="AND25 Software">
-            </a>
+    <div style="text-align: center;">
+        <a href="https://github.com/andtwentyfive">
+            <img class="logo" src="assets/image/AND25-light.svg" alt="AND25 Software">
+        </a>
+    </div>
+    <div style="text-align: left;">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <p>AND25 is a mobile-first software studio in Andorra. We design and develop smart, intuitive apps with a laser focus on user experience.</p>
         </div>
-        <p style="font-size: smaller; text-align: center;">AND25 is a mobile-first software studio in Andorra. We design
-            and develop smart, intuitive apps with a laser focus on user experience.</p>
-        <p style="color: darkgray; font-size: 70%; line-height: 1.5">&copy; 2025 AND25 Software, SL &bull; Andorra La
-            Vella</p>
+
+        <button class="accordion">Built with care. Guided by people.</button>
+        <div class="panel">
+            <p>At AND25, we believe software development is, at its heart, an act of service. Our job is not just to build things right - but to build the right things for the people who use them.</p>
+        </div>
+
+        <button class="accordion">1. People Over Products</button>
+        <div class="panel">
+            <p>We create software to support people's goals, not to showcase our own skills. Our customers' needs, challenges, and feedback guide what we build and why.</p>
+            <blockquote>
+                <span>We listen before we build.</span>
+            </blockquote>
+        </div>
+
+        <button class="accordion">2. Understanding Over Assumptions</button>
+        <div class="panel">
+            <p>We work to understand the context, constraints, and lived realities of those we serve. We ask questions, seek out diverse voices, and remain open to being wrong.</p>
+            <blockquote>
+                <span>Good ideas come from empathy, not ego.</span>
+            </blockquote>
+        </div>
+
+        <button class="accordion">3. Long-Term Relationships Over Short-Term Wins</button>
+        <div class="panel">
+            <p>We value trust more than transactions. We measure our success by the lasting impact we make, not just by how quickly we deliver or how flashy our features are.</p>
+            <blockquote>
+                <span>Reliability earns more loyalty than speed.</span>
+            </blockquote>
+        </div>
+
+        <button class="accordion">4. Clarity Over Complexity</button>
+        <div class="panel">
+            <p>We strive for simplicity and transparency in both our code and communication. We don't build to impress - we build to be understood, used, and trusted.</p>
+            <blockquote>
+                <span>If it confuses the customer, it's not done yet.</span>
+            </blockquote>
+        </div>
+
+        <button class="accordion">5. Collaboration Over Control</button>
+        <div class="panel">
+            <p>We don't pretend to have all the answers. We involve customers early and often, learn together, and adjust our direction as new insights emerge.</p>
+            <blockquote>
+                <span>We do better work when we don't work alone.</span>
+            </blockquote>
+        </div>
+
+        <button class="accordion">6. Learning Over Certainty</button>
+        <div class="panel">
+            <p>We view every project as an opportunity to grow. Mistakes are part of the process. Listening, reflecting, and improving matter more than always being right.</p>
+            <blockquote>
+                <span>We stay curious - and humble - at every stage.</span>
+            </blockquote>
+        </div>
+
+        <div style="margin: 26px; text-align: center;">
+            <p style="color: darkgray; font-size: 70%; line-height: 1.5;">&copy; 2025 AND25 Software, SL &bull; Andorra La Vella</p>
+        </div>
     </div>
 </div>
+<script>
+    Array.from(document.querySelectorAll('.accordion')).map(it => {
+        it.addEventListener("click", function() {
+            this.classList.toggle("active");
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    })
+</script>
 </body>
 </html>
